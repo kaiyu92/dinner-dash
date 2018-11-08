@@ -38,6 +38,7 @@ def estimate():
   #retrieve inputDate & inputTime from the body of request
   inputDate = data.get("inputDate")
   inputTime = data.get("inputTime")
+  #format
   datetime_object = datetime.datetime.strptime(inputDate, "%d/%m/%Y")
   time_object = datetime.datetime.strptime(inputTime, '%H:%M').time()
 
@@ -50,10 +51,15 @@ def estimate():
   #retrieve day
   retrieveDay = datetime_object.weekday() + 1
 
+  dataArr = [retrieveSem, retrieveWeek, retrieveDay]
+
   #ml_input = process_data(data)
   #prediction = predict(ml_input)
 
-  resp = make_response(json.dumps({'Sem': retrieveSem, 'Week': retrieveWeek, 'Day': retrieveDay}))
+  #retrieve estimation through the input time
+  retrieveEstimation = findEstimationThroughTime(time_object, prediction)
+
+  resp = make_response(json.dumps({'result': retrieveEstimation}))
   resp.status_code = 200
   resp.headers['Access-Control-Allow-Origin'] = '*'
   return resp
@@ -77,7 +83,10 @@ def findWeek(inputDate, sem):
       return (inputDate - nus_startDate_sem2_before).days / 7.0
 
 def findEstimationThroughTime(inputTime, prediction):
-
+  if inputTime.hour > 7:
+    return prediction[1] - prediction[0]
+  else:
+    return prediction[0]
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True, threaded=True)
