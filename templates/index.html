@@ -133,19 +133,18 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+                  <input type="text" id="date" class="form-control" placeholder="10/10/2018" required="required">
                   <p class="help-block text-danger"></p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+                  <input type="text" id="time" class="form-control" placeholder="6:50" required="required">
                   <p class="help-block text-danger"></p>
                 </div>
               </div>
             </div>
-            <div id="success"></div>
-            <button type="submit" class="btn btn-customm btn-lg">Get Results</button>
+            <button id="submit" type="submit" class="btn btn-customm btn-lg">Get Results</button>
           </form>
         </div>
       </div>
@@ -206,16 +205,18 @@
 
 
   <script>
-    var el = document.getElementById('success');
-    el.addEventListener('click', configureTracker);
+    var el = document.getElementById('submit');
+    el.addEventListener('click', getResults);
 
-    function configureTracker(e) {
+    function getResults(e) {
 
       data = {
-        "bb": JSON.stringify([x_top_left, y_top_left, x_bot_right, y_bot_right])
+        "inputDate": document.getElementById('date').value,
+        "inputTime": document.getElementById('time').value
       };
+      console.log(data)
       $.ajax({
-        url: 'configure_tracker',
+        url: 'estimate',
         type: 'POST',
         data: data,
         dataType: 'json',

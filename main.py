@@ -13,7 +13,8 @@ nus_startDate_sem1_after = datetime.datetime(2018, 9, 22)
 nus_startDate_sem2_before = datetime.datetime(2019, 1, 7)
 nus_startDate_sem2_after = datetime.datetime(2019, 2, 23)
 
-model = Model('data/model.json', 'data/model.h5')
+ml_model = Model('data/model.json', 'data/model.h5')
+ml_model.model._make_predict_function()
 
 app = Flask(__name__, static_url_path='')
 
@@ -65,7 +66,7 @@ def estimate():
   dataArr = [retrieveSem, retrieveWeek, retrieveDay]
 
   #ml_input = process_data(data)
-  prediction = model.predict(dataArr)
+  prediction = ml_model.predict(dataArr)
 
   #retrieve estimation through the input time
   retrieveEstimation = findEstimationThroughTime(time_object, prediction)

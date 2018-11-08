@@ -13,6 +13,7 @@ class Model:
         loaded_model.load_weights(path_to_weights)
 
         loaded_model.compile(loss='mean_squared_error', optimizer='adam')
+        print("loaded model")
         return loaded_model
 
     def _preprocess(self, array):
