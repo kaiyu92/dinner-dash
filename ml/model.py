@@ -19,9 +19,16 @@ class Model:
         input_data = np.asarray(array).transpose()
         return np.asarray([input_data])
 
+    def _postprocess(self, prediction):
+        result = []
+        result.append(int(prediction[0][0]))
+        result.append(int(prediction[0][1]))
+        return result
+
+
     def predict(self, data):
         input_data = self._preprocess(data)
         prediction = self.model.predict(input_data)
-
-        return prediction[0]
+        result = self._postprocess(prediction)
+        return result
 
