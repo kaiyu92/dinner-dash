@@ -25,9 +25,17 @@ def send_js(path):
 def send_css(path):
     return send_from_directory('css', path)
 
-@app.route('/images/<path:path>')
+@app.route('/img/<path:path>')
 def send_img(path):
-    return send_from_directory('images', path)
+    return send_from_directory('img', path)
+
+@app.route('/video/<path:path>')
+def send_vid(path):
+    return send_from_directory('video', path)
+
+@app.route('/fonts/<path:path>')
+def send_fonts(path):
+    return send_from_directory('fonts', path)
 
 @app.route('/')
 def index():
