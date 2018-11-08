@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, Response, send_from_directory, request, make_response
 import json, datetime
+from ml.model import Model
 
 #NUS Start Date for Sem 1
 #13/08/18
@@ -11,6 +12,8 @@ nus_startDate_sem1_after = datetime.datetime(2018, 9, 22)
 #14/01/19
 nus_startDate_sem2_before = datetime.datetime(2019, 1, 7)
 nus_startDate_sem2_after = datetime.datetime(2019, 2, 23)
+
+model = Model('data/model.json', 'data/model.h5')
 
 app = Flask(__name__, static_url_path='')
 
@@ -54,7 +57,7 @@ def estimate():
   dataArr = [retrieveSem, retrieveWeek, retrieveDay]
 
   #ml_input = process_data(data)
-  #prediction = predict(ml_input)
+  prediction = model.predict(dataArr)
 
   #retrieve estimation through the input time
   retrieveEstimation = findEstimationThroughTime(time_object, prediction)

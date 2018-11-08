@@ -6,11 +6,11 @@ class Model:
         self.model = self._load_model(path_to_model, path_to_weights)
     
     def _load_model(self, path_to_model, path_to_weights):
-        json_file = open('data/model.json', 'r')
+        json_file = open(path_to_model, 'r')
         loaded_model_json = json_file.read()
         json_file.close()
         loaded_model = tf.keras.models.model_from_json(loaded_model_json)
-        loaded_model.load_weights("model.h5")
+        loaded_model.load_weights(path_to_weights)
 
         loaded_model.compile(loss='mean_squared_error', optimizer='adam')
         return loaded_model
