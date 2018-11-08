@@ -16,7 +16,7 @@ import io
 predictors = ["Semester", "Week", "Day"]
 targets = ["Diners Before 7pm","Total"]
 
-train_df = pd.read_csv('train.csv')
+train_df = pd.read_csv('../data/train.csv')
 train_df.head()
 
 """Data processing"""
