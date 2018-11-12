@@ -37,9 +37,9 @@ summary {
 }
 
 .navbar p{
-    margin-left: 25px;
-    padding-top: 40px;
-    font-size: 30px;
+    margin-left: 70px;
+    padding-top: 45px;
+    font-size: 25px;
     font-family: 'Open Sans', sans-serif;
     font-style: bold;
 }
@@ -64,6 +64,8 @@ summary {
     color:white;
     border-radius: 10px;
     padding:10px;
+    padding-top:20px;
+    padding-bottom: 25px;
 }
 
 #bubble p{
@@ -76,7 +78,7 @@ summary {
 
 
 #bubbler{
-    width: 30%;
+    width: 320px;
     display: inline-block;
     margin-left:50px;
     margin-top: 20px;
@@ -88,14 +90,14 @@ summary {
 }
 
 #bubble h3, #bubbler h3{
-    font-size: 14px;
+    font-size: 16px;
     padding: 0;
     padding-left: 20px;
     font-family: Helvetica;
 }
 
 #label{
-    font-size: 20px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
     font-family: verdana;
