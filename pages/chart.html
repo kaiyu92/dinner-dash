@@ -14,11 +14,28 @@
 			-ms-user-select: none;
 		}
 	</style>
+
+	<link rel="stylesheet" type="text/css" href="chart.css">
 </head>
 
 <body>
-	<div style="width:75%;">
-		<canvas id="canvas"></canvas>
+	<nav class="navbar">
+		<p>DinnerDash</p>
+	</nav>
+	<div class = "rower">
+		<div id ="bubble">
+			<h3> Time </h3>
+			<p> 15:30 </p>
+		</div>
+		<div id ="bubbler">
+			<h3>EXPECTED NUMBER OF PEOPLE </h3>
+			<p id="label"> Max </p> <p id="maxNum"> 880 </p>
+			<p id="label"> Min </p> <p id="minNum"> 660 </p>
+		</div>
+	</div>
+
+	<div style=" width:90%;">
+		<canvas id="canvas" style=" padding:10px; margin-left:3%; margin-top: 50px; background-color: white; border-radius: 5px;"></canvas>
 	</div>
 	<br>
 	<br>
@@ -168,6 +185,7 @@
 			}
 			count++;
 		}
+
 	</script>
 </body>
 
