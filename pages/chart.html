@@ -1,0 +1,198 @@
+
+<!doctype html>
+<html>
+
+<head>
+	<title>Line Chart</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+	<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+	<style>
+		canvas {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="width:75%;">
+		<canvas id="canvas"></canvas>
+	</div>
+	<br>
+	<br>
+	<script>
+		var timeFormat = 'HH:mm';
+
+		function newTime(mins) {
+
+			return moment("20130208T1730").add(mins, 'm').format("HH:mm");
+		}
+
+		function newDateString(days) {
+			return moment().add(days, 'd').format(timeFormat);
+		}
+
+		var color = Chart.helpers.color;
+		var config = {
+			type: 'line',
+			data: {
+				labels: [ // Date Objects
+				],
+				datasets: [{
+					label: 'Number Of Diners',
+					backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+					borderColor: window.chartColors.red,
+					fill: false,
+					data: [
+					],
+				}]
+			},
+			options: {
+				title: {
+					text: 'Chart.js Time Scale'
+				},
+				scales: {
+					xAxes: [{
+						type: 'time',
+						time: {
+							format: timeFormat,
+							// round: 'day'
+							tooltipFormat: 'll HH:mm'
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Time'
+						},
+						ticks: {
+							min: "15:30"
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'value',
+						},
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				},
+			}
+		};
+
+		function getValueAtTime(time, total_people){ //time format: (int) 1730.... 2130
+
+			var op = Math.floor(((time - 1730)/50) + 1);
+			console.log(op);
+			var ppl = 0;
+
+			switch (op){
+				case 1:
+					ppl = getRandomInt(80, 120); // 530pm 10
+					break;
+				case 2:
+					ppl = getRandomInt(130, 170); // 6pm 15
+					break;
+				case 3:
+					ppl = getRandomInt(200, 240); // 630pm 25
+					break;
+				case 4:
+					ppl = getRandomInt(150, 180); // 7pm  15
+					break;
+				case 5:
+					ppl = getRandomInt(130, 170); // 730pm  10
+					break;
+				case 6:
+					ppl = getRandomInt(130, 170); // 8pm  15
+					break;
+				case 7:
+					ppl = getRandomInt(30, 100); // 830pm 5
+					break;
+				case 8:
+					ppl = getRandomInt(30, 80); // 9pm  5
+					break;
+				case 9:
+					ppl = 0;
+					break;
+			}
+
+			return Math.floor(((ppl * total_people) / 1000));
+
+		}
+
+		function getRandomInt(min, max) {
+    		return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+
+		};
+
+		function addData(time, people) {
+			baseTime = 1730;
+			if (time % 100 == 0){
+				var i = ((time - baseTime - 70) / 50) + 1
+			} else {
+				var i = (time - baseTime) / 50;
+			}
+
+			if (config.data.datasets.length > 0) {
+				config.data.labels.push(newTime(i * 30));
+
+				for (var index = 0; index < config.data.datasets.length; ++index) {
+					if (typeof config.data.datasets[index].data[0] === 'object') {
+						config.data.datasets[index].data.push({
+							y: getValueAtTime(time, people)
+						});
+					} else {
+						config.data.datasets[index].data.push(getValueAtTime(time, people));
+					}
+				}
+
+				// window.myLine.update();
+			}
+		};
+
+
+		var parameters = location.search.substring(1).split("&");
+	    var ppltemp = parameters[0].split("=");
+		var timesplit = (parameters[1].split("="))[1].split(":");
+		var hours = ((parseInt(timesplit[0]) + 12) * 100) + parseInt(timesplit[1]);
+
+		console.log("hours = " + hours % 100);
+
+
+
+		if(0 < (hours % 100) && (hours % 100) < 30) {
+			console.log("first");
+			hours -= hours % 100;
+		} else if (30 < (hours % 100) && (hours % 100) < 100){
+			console.log("second");
+			hours += 100 - (hours % 100);
+		}
+
+		var count = 1;
+		console.log("hours = " + hours);
+		var time = hours;
+
+		while(time < 2131){
+			console.log("time=" + time);
+			addData(time, parseInt(ppltemp[1]));
+			if(time % 100 == 0){
+				time += 30;
+			} else {
+				time += 70;
+			}
+			count++;
+		}
+
+
+	</script>
+</body>
+
+</html>

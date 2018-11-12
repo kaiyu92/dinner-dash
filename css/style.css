@@ -1,3 +1,4 @@
+
 body, html {
 	font-family: 'Open Sans', sans-serif;
 	text-rendering: optimizeLegibility !important;
@@ -120,7 +121,7 @@ hr {
 	background-color: #ffa700;
 }
 .section-title {
-	margin-bottom: 70px;
+	margin-bottom: 10px;
 }
 .section-title p {
 	font-size: 18px;
@@ -187,7 +188,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 
 #introhd {
 	color: white;
-
+	font-size: 70px;
 }
 
 
@@ -266,8 +267,8 @@ header .btn-custom {
 	border-bottom: 1px solid rgba(255,255,255,0.4);
 }
 header .intro-text {
-	padding-top: 320px;
-	padding-bottom: 200px;
+	padding-top: 100px;
+	padding-bottom: 100px;
 	text-align: center;
 }
 /* About Section */

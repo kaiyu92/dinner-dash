@@ -40,6 +40,10 @@ def send_vid(path):
 def send_fonts(path):
     return send_from_directory('fonts', path)
 
+@app.route('/pages/<path:path>')
+def send_pages(path):
+    return send_from_directory('pages', path)
+
 @app.route('/')
 def index():
     return render_template('index.html')
