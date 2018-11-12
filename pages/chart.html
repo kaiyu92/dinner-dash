@@ -100,28 +100,28 @@
 			var ppl = 0;
 			switch (op){
 				case 1:
-					ppl = 100//getRandomInt(80, 120); // 530pm 10
+					ppl = getRandomInt(80, 120); // 530pm 10
 					break;
 				case 2:
-					ppl = 135//getRandomInt(130, 170); // 6pm 15
+					ppl = getRandomInt(130, 170); // 6pm 15
 					break;
 				case 3:
-					ppl = 200//getRandomInt(200, 240); // 630pm 25
+					ppl = getRandomInt(200, 240); // 630pm 25
 					break;
 				case 4:
-					ppl = 160//getRandomInt(150, 180); // 7pm  15
+					ppl = getRandomInt(150, 180); // 7pm  15
 					break;
 				case 5:
-					ppl = 133//getRandomInt(130, 170); // 730pm  10
+					ppl = getRandomInt(130, 170); // 730pm  10
 					break;
 				case 6:
-					ppl = 135//getRandomInt(130, 170); // 8pm  15
+					ppl = getRandomInt(130, 170); // 8pm  15
 					break;
 				case 7:
-					ppl = 45//getRandomInt(30, 100); // 830pm 5
+					ppl = getRandomInt(30, 100); // 830pm 5
 					break;
 				case 8:
-					ppl = 70//getRandomInt(30, 80); // 9pm  5
+					ppl = getRandomInt(30, 80); // 9pm  5
 					break;
 				case 9:
 					ppl = 0;
@@ -130,7 +130,14 @@
 			return Math.floor(((ppl * total_people) / 1000));
 		}
 		function getRandomInt(min, max) {
-    		return Math.floor(Math.random() * (max - min + 1)) + min + dayOfWeek*3;
+
+			if (dayOfWeek == 1 || dayOfWeek == 3 || dayOfWeek == 5) {
+				return Math.max(Math.floor(Math.random() * (max - min + 1)) + min + dayOfWeek*10, 240);
+
+			} else {
+				return Math.min(Math.floor(Math.random() * (max - min + 1)) + min - dayOfWeek*5,20);
+			}
+    		
 		}
 		window.onload = function() {
 			var ctx = document.getElementById('canvas').getContext('2d');
