@@ -24,8 +24,8 @@
 	</nav>
 	<div class = "rower">
 		<div id ="bubble">
-			<h3> Time </h3>
-			<p> 15:30 </p>
+			<h3> TIME </h3>
+			<p id="time"> 15:30 </p>
 		</div>
 		<div id ="bubbler">
 			<h3>EXPECTED NUMBER OF PEOPLE </h3>
@@ -55,8 +55,8 @@
 				],
 				datasets: [{
 					label: 'Number Of Diners',
-					backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-					borderColor: window.chartColors.red,
+					backgroundColor: 'rgba(0, 73, 156, 0.5)',
+					borderColor: 'rgba(0, 73, 156, 1)',
 					fill: false,
 					data: [
 					],
@@ -185,6 +185,9 @@
 			}
 			count++;
 		}
+		document.getElementById("time").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
+		document.getElementById("minNum").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
+		document.getElementById("maxNum").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
 
 	</script>
 </body>
