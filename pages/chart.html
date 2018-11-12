@@ -20,7 +20,7 @@
 
 <body>
 	<nav class="navbar">
-		<p>DinnerDash</p>
+		<p id ="title" >DinnerDash</p>
 	</nav>
 	<div class = "rower">
 		<div id ="bubble">
@@ -29,17 +29,21 @@
 		</div>
 		<div id ="bubbler">
 			<h3>EXPECTED NUMBER OF PEOPLE </h3>
-			<p id="label"> Max </p> <p id="maxNum"> 880 </p>
-			<p id="label"> Min </p> <p id="minNum"> 660 </p>
+			<p id="label"> max </p> <p id="maxNum"> 880 </p>
+			<p id="label"> min </p> <p id="minNum"> 660 </p>
 		</div>
 	</div>
 
-	<div style=" width:90%;">
+	<div style=" width:80%;">
 		<canvas id="canvas" style=" padding:10px; margin-left:3%; margin-top: 50px; background-color: white; border-radius: 5px;"></canvas>
 	</div>
 	<br>
 	<br>
 	<script>
+		document.getElementById('title').addEventListener('click', function() {
+				window.location = "http://0.0.0.0:5000";
+		});
+
 		var timeFormat = 'HH:mm';
 		function newTime(mins) {
 			return moment("20130208T1730").add(mins, 'm').format("HH:mm");
@@ -106,16 +110,16 @@
 					ppl = getRandomInt(130, 170); // 6pm 15
 					break;
 				case 3:
-					ppl = getRandomInt(200, 240); // 630pm 25
+					ppl = getRandomInt(210, 250); // 630pm 25
 					break;
 				case 4:
-					ppl = getRandomInt(150, 180); // 7pm  15
+					ppl = getRandomInt(130, 160); // 7pm  15
 					break;
 				case 5:
-					ppl = getRandomInt(130, 170); // 730pm  10
+					ppl = getRandomInt(80, 120); // 730pm  10
 					break;
 				case 6:
-					ppl = getRandomInt(130, 170); // 8pm  15
+					ppl = getRandomInt(100, 130); // 8pm  15
 					break;
 				case 7:
 					ppl = getRandomInt(30, 100); // 830pm 5
@@ -132,17 +136,18 @@
 		function getRandomInt(min, max) {
 
 			if (dayOfWeek == 1 || dayOfWeek == 3 || dayOfWeek == 5) {
-				return Math.max(Math.floor(Math.random() * (max - min + 1)) + min + dayOfWeek*10, 240);
+				return Math.min((Math.floor(Math.random() * (max - min + 1)) + min)*0.9, 140);
 
 			} else {
-				return Math.min(Math.floor(Math.random() * (max - min + 1)) + min - dayOfWeek*5,20);
+				return Math.min((Math.floor(Math.random() * (max - min + 1)) + min)*1.1,140);
 			}
-    		
+
 		}
 		window.onload = function() {
 			var ctx = document.getElementById('canvas').getContext('2d');
 			window.myLine = new Chart(ctx, config);
 		};
+
 		function addData(time, people) {
 			baseTime = 1730;
 			if (time % 100 == 0){
@@ -154,15 +159,20 @@
 				config.data.labels.push(newTime(i * 30));
 				for (var index = 0; index < config.data.datasets.length; ++index) {
 					if (typeof config.data.datasets[index].data[0] === 'object') {
+						var h = getValueAtTime(time, people);
+						console.log(h);
 						config.data.datasets[index].data.push({
-							y: getValueAtTime(time, people)
+							y: h
 						});
 					} else {
+						var h = getValueAtTime(time, people);
+						console.log(h);
 						config.data.datasets[index].data.push(getValueAtTime(time, people));
 					}
 				}
 				// window.myLine.update();
 			}
+			return h;
 		};
 		var parameters = location.search.substring(1).split("&");
 	    var ppltemp = parameters[0].split("=");
@@ -182,9 +192,10 @@
 		var count = 1;
 		console.log("hours = " + hours);
 		var time = hours;
+		var total = 0;
 		while(time < 2131){
 			console.log("time=" + time);
-			addData(time, parseInt(ppltemp[1]));
+			total += addData(time, parseInt(ppltemp[1]));
 			if(time % 100 == 0){
 				time += 30;
 			} else {
@@ -192,9 +203,16 @@
 			}
 			count++;
 		}
+
+		console.log(total);
 		document.getElementById("time").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
-		document.getElementById("minNum").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
-		document.getElementById("maxNum").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
+		if(hours < 1901){
+			document.getElementById("minNum").innerHTML = Math.round(0.95 * total * 2.5);
+			document.getElementById("maxNum").innerHTML = Math.round(1.05 * total * 2.5);
+		} else {
+			document.getElementById("minNum").innerHTML = Math.round(0.95 * total);
+			document.getElementById("maxNum").innerHTML = Math.round(1.05 * total);
+		}
 
 	</script>
 </body>
