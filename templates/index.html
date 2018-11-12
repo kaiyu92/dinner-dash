@@ -198,7 +198,7 @@
             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
           </ul>
         </div>
-        <p>&copy; DinnerDash. Designed by WOODOOBOOSOO's pals.</p>
+        <p>&copy; DinnerDash. Designed by The Thinkers.</p>
       </div>
     </div>
   </div>
@@ -221,7 +221,8 @@
         data: data,
         dataType: 'json',
         success: function (response) {
-          window.location = "http://0.0.0.0:5000/pages/chart.html?people="+ response.result + "&time="+ document.getElementById('time').value;
+          // window.location = "http://0.0.0.0:5000/pages/chart.html?people="+ response.result + response.dateTime + "&time="+ document.getElementById('time').value + "&day=" response.dateTime[2];
+          window.location = "http://0.0.0.0:5000/pages/chart.html?people="+ response.result + "&time="+ document.getElementById('time').value + "&dateInfo=" + response.dateTime;
         },
         error: function (error) {
           console.log(error);

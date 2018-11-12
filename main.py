@@ -77,7 +77,7 @@ def estimate():
   #retrieve estimation through the input time
   retrieveEstimation = findEstimationThroughTime(time_object, prediction)
 
-  resp = make_response(json.dumps({'result': retrieveEstimation}))
+  resp = make_response(json.dumps({'result': retrieveEstimation, "dateTime": dataArr}))
   resp.status_code = 200
   resp.headers['Access-Control-Allow-Origin'] = '*'
   return resp
