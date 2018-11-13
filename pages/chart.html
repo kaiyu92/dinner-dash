@@ -107,22 +107,22 @@
 					ppl = getRandomInt(80, 120); // 530pm 10
 					break;
 				case 2:
-					ppl = getRandomInt(130, 170); // 6pm 15
+					ppl = getRandomInt(150, 170); // 6pm 15
 					break;
 				case 3:
-					ppl = getRandomInt(210, 250); // 630pm 25
+					ppl = getRandomInt(230, 260); // 630pm 25
 					break;
 				case 4:
-					ppl = getRandomInt(130, 160); // 7pm  15
+					ppl = getRandomInt(140, 150); // 7pm  15
 					break;
 				case 5:
-					ppl = getRandomInt(80, 120); // 730pm  10
+					ppl = getRandomInt(80, 110); // 730pm  10
 					break;
 				case 6:
-					ppl = getRandomInt(100, 130); // 8pm  15
+					ppl = getRandomInt(80, 100); // 8pm  15
 					break;
 				case 7:
-					ppl = getRandomInt(30, 100); // 830pm 5
+					ppl = getRandomInt(30, 90); // 830pm 5
 					break;
 				case 8:
 					ppl = getRandomInt(30, 80); // 9pm  5
@@ -195,7 +195,11 @@
 		var total = 0;
 		while(time < 2131){
 			console.log("time=" + time);
-			total += addData(time, parseInt(ppltemp[1]));
+			if(hours < 1901){
+				total += addData(time, parseInt(ppltemp[1]) * 4);
+			} else {
+				total += addData(time, parseInt(ppltemp[1]));
+			}
 			if(time % 100 == 0){
 				time += 30;
 			} else {
@@ -207,8 +211,8 @@
 		console.log(total);
 		document.getElementById("time").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
 		if(hours < 1901){
-			document.getElementById("minNum").innerHTML = Math.round(0.95 * total * 2.5);
-			document.getElementById("maxNum").innerHTML = Math.round(1.05 * total * 2.5);
+			document.getElementById("minNum").innerHTML = Math.round(0.95 * total);
+			document.getElementById("maxNum").innerHTML = Math.round(1.05 * total);
 		} else {
 			document.getElementById("minNum").innerHTML = Math.round(0.95 * total);
 			document.getElementById("maxNum").innerHTML = Math.round(1.05 * total);
