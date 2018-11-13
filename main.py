@@ -4,6 +4,8 @@ from flask import Flask, render_template, Response, send_from_directory, request
 import json, datetime
 from ml.model import Model
 
+#harsh testing pushing
+
 #NUS Start Date for Sem 1
 #13/08/18
 nus_startDate_sem1_before = datetime.datetime(2018, 8, 6)
@@ -38,6 +40,10 @@ def send_vid(path):
 def send_fonts(path):
     return send_from_directory('fonts', path)
 
+@app.route('/pages/<path:path>')
+def send_pages(path):
+    return send_from_directory('pages', path)
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -71,7 +77,7 @@ def estimate():
   #retrieve estimation through the input time
   retrieveEstimation = findEstimationThroughTime(time_object, prediction)
 
-  resp = make_response(json.dumps({'result': retrieveEstimation}))
+  resp = make_response(json.dumps({'result': retrieveEstimation, "dateTime": dataArr}))
   resp.status_code = 200
   resp.headers['Access-Control-Allow-Origin'] = '*'
   return resp

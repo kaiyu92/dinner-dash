@@ -1,3 +1,4 @@
+
 body, html {
 	font-family: 'Open Sans', sans-serif;
 	text-rendering: optimizeLegibility !important;
@@ -11,12 +12,12 @@ h2 {
 	margin: 0 0 20px 0;
 	font-weight: 600;
 	font-size: 36px;
-	color: #333;
+	color: #044172;
 }
 h3, h4 {
 	font-size: 20px;
 	font-weight: 400;
-	color: #333;
+	color: #044172;
 }
 h5 {
 	text-transform: uppercase;
@@ -31,7 +32,7 @@ p.intro {
 	line-height: 24px;
 }
 a {
-	color: #ffa700;
+	color: #fab700;
 	font-weight: 400;
 }
 a:hover, a:focus {
@@ -68,7 +69,7 @@ hr {
 	width: 70px;
 	text-align: center;
 	position: relative;
-	background: #ffa700;
+	background: #fab700;
 	margin: 0 auto;
 	margin-bottom: 20px;
 	border: 0;
@@ -98,15 +99,15 @@ hr {
 	margin: 9px 20px 0 20px;
 }
 #menu.navbar-default .navbar-nav > li > a:hover {
-	color: #ffa700;
+	color: #fab700;
 }
 .on {
-	background-color: #333 !important;
+	background-color: #044172 !important;
 	padding: 0 !important;
 	padding: 15px 0 !important;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color: #ffa700 !important;
+	color: #fab700 !important;
 	background-color: transparent;
 }
 .navbar-toggle {
@@ -117,10 +118,10 @@ hr {
 	border-color: #000;
 }
 .navbar-default .navbar-toggle:hover>.icon-bar {
-	background-color: #ffa700;
+	background-color: #fab700;
 }
 .section-title {
-	margin-bottom: 70px;
+	margin-bottom: 10px;
 }
 .section-title p {
 	font-size: 18px;
@@ -129,7 +130,7 @@ hr {
 .btn-customm {
 	text-transform: uppercase;
 	color: #000;
-	background-color: #ffce00;
+	background-color: #fab700;
 	padding: 14px 20px;
 	letter-spacing: 1px;
 	margin: 0;
@@ -141,14 +142,14 @@ hr {
 }
 .btn-customm:hover, .btn-customm:focus, .btn-customm.focus, .btn-customm:active, .btn-customm.active {
 	color: #000;
-	background-color: #ffe05c;
+	background-color: #fab700;
 }
 
 
 .btn-custom {
 	text-transform: uppercase;
 	color: #000;
-	background-color: #ffa700;
+	background-color: #fab700;
 	padding: 14px 20px;
 	letter-spacing: 1px;
 	margin: 0;
@@ -187,7 +188,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 
 #introhd {
 	color: white;
-
+	font-size: 70px;
 }
 
 
@@ -266,8 +267,8 @@ header .btn-custom {
 	border-bottom: 1px solid rgba(255,255,255,0.4);
 }
 header .intro-text {
-	padding-top: 320px;
-	padding-bottom: 200px;
+	padding-top: 100px;
+	padding-bottom: 100px;
 	text-align: center;
 }
 /* About Section */
@@ -281,7 +282,7 @@ header .intro-text {
 	margin: 20px 0 0 0;
 }
 #about .about-text span {
-	color: #FFA700;
+	color: #fab700;
 	font-weight: 700;
 	letter-spacing: -1px;
 }
@@ -308,7 +309,7 @@ header .intro-text {
 /* Services Section */
 #services {
 	padding: 120px 0;
-	background: #ffa700;
+	background: #fab700;
 }
 #services .service-media {
 	margin: 10px;
@@ -367,11 +368,11 @@ ol.type li a {
 	transition: all 0.3s;
 }
 ol.type li a.active {
-	background: #ffa700;
+	background: #fab700;
 	color: #000;
 }
 ol.type li a:hover {
-	background: #ffa700;
+	background: #fab700;
 	color: #000;
 }
 .isotope-item {
@@ -560,7 +561,7 @@ color: #777;
 }
 /* Footer Section*/
 #footer {
-	background: #333;
+	background: #044172;
 	padding: 30px 0 20px;
 }
 #footer h3 {
@@ -583,12 +584,12 @@ color: #777;
 	height: 40px;
 	padding: 10px;
 	background: #444;
-	color: #ffa700;
+	color: #fab700;
 	border-radius: 50%;
 	transition: all 0.3s;
 }
 #footer .social i.fa:hover {
-	background: #ffa700;
+	background: #fab700;
 	color: #000;
 }
 #footer p {

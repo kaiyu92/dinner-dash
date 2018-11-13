@@ -1,0 +1,113 @@
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+
+}
+body {
+    margin-top:0px;
+    margin: 0;
+    padding: 0;
+    background-color: #fab700;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+
+.navbar{
+    margin-top: -50px;
+    font-size: 15px;
+    background-color: #044172;
+    height: 100px;
+    width: 100%;
+    color: white;
+}
+
+.navbar p{
+    margin-left: 125px;
+    padding-top: 47px;
+    font-size: 27px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: bold;
+}
+
+.chartjs-size-monitor{
+    margin-top:0;
+    padding-top:0;
+}
+
+.rower{
+    padding-left: 50px;
+}
+
+#bubble{
+    width: 320px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+    font-family: 'Impact';
+    font-style: bold;
+    background-color: #044172;
+    color:white;
+    border-radius: 10px;
+    padding:10px;
+    padding-top:15px;
+    padding-bottom: 30px;
+}
+
+#bubble p{
+    font-size: 130px;
+    margin:0;
+    margin-left: 20px;
+    padding: 0;
+}
+
+
+
+#bubbler{
+    width: 320px;
+    display: inline-block;
+    margin-left:50px;
+    margin-top: 20px;
+    font-family:'Impact';
+    background-color: #044172;
+    color:white;
+    border-radius: 10px;
+    padding:10px;
+}
+
+#bubble h3, #bubbler h3{
+    font-size: 16px;
+    padding: 0;
+    padding-left: 20px;
+    font-family: Helvetica;
+}
+
+#label{
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    font-family: verdana;
+    padding-left:30px;
+}
+
+#maxNum, #minNum{
+    font-size: 60px;
+    font-style: bold;
+    margin: 0;
+    padding: 0;
+    padding-left: 80px;
+}
