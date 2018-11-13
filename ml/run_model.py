@@ -1,11 +1,13 @@
 import tensorflow as tf
 import numpy as np
 
-json_file = open('data/model.json', 'r')
+json_file = open('../data/model.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = tf.keras.models.model_from_json(loaded_model_json)
-loaded_model.load_weights("model.h5")
+loaded_model.load_weights("../data/model.h5")
+
+tf.keras.utils.plot_model(loaded_model, to_file='model.png', show_shapes=True, show_layer_names=True)
 
 loaded_model.compile(loss='mean_squared_error', optimizer='adam')
 

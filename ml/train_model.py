@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import tensorflow as tf
 import io
+import matplotlib.pyplot as plt
 
 """Retrieve data from csv files"""
 
@@ -26,7 +27,7 @@ train_df.head()
 
 """Normalise data"""
 
-'''
+
 from sklearn.preprocessing import MinMaxScaler
 
 scaler = MinMaxScaler(feature_range=(0, 1)) # TO BE UPDATED 
@@ -40,10 +41,9 @@ multiplied_by = scaler.scale_[2] # TO BE UPDATED
 added = scaler.min_[2] # TO BE UPDATED
 
 scaled_train_df = pd.DataFrame(scaled_train, columns=train_df.columns.values)
-'''
 
-X = train_df.drop(targets, axis=1).values
-Y = train_df[targets].values
+X = scaled_train_df.drop(targets, axis=1).values
+Y = scaled_train_df[targets].values
 
 """Build model"""
 
@@ -59,13 +59,26 @@ model.compile(loss='mean_squared_error', optimizer='adam')
 
 """Train"""
 
-model.fit(
+history = model.fit(
     X[10:],
     Y[10:],
     epochs=1000,
     shuffle=True,
-    verbose=2
+    validation_split=0.25,  
+    batch_size=16, 
+    verbose=1
 )
+
+"""Plot"""
+
+# Plot training & validation loss values
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper left')
+plt.show()
 
 """Export model"""
 

@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+dinner-dash.pem
+restartServer.sh
+wsgi.py
