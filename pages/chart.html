@@ -45,7 +45,7 @@
 		});
 
 		var timeFormat = 'HH:mm';
-		function newTime(mins) {
+		function z(mins) {
 			return moment("20130208T1730").add(mins, 'm').format("HH:mm");
 		}
 		function newDateString(days) {
@@ -98,48 +98,48 @@
 				},
 			}
 		};
-		function getValueAtTime(time, total_people){ //time format: (int) 1730.... 2130
-			var op = Math.floor(((time - 1730)/50) + 1);
+		function v(c, p){ //time format: (int) 1730.... 2130
+			var op = Math.floor(((c - 1730)/50) + 1);
 			console.log(op);
-			var ppl = 0;
+			var w = 0;
 			switch (op){
 				case 1:
-					ppl = getRandomInt(80, 120); // 530pm 10
+					w = q(80, 120); // 530pm 10
 					break;
 				case 2:
-					ppl = getRandomInt(150, 170); // 6pm 15
+					w = q(150, 170); // 6pm 15
 					break;
 				case 3:
-					ppl = getRandomInt(230, 260); // 630pm 25
+					w = q(230, 260); // 630pm 25
 					break;
 				case 4:
-					ppl = getRandomInt(140, 150); // 7pm  15
+					w = q(140, 150); // 7pm  15
 					break;
 				case 5:
-					ppl = getRandomInt(80, 110); // 730pm  10
+					w = q(80, 110); // 730pm  10
 					break;
 				case 6:
-					ppl = getRandomInt(80, 100); // 8pm  15
+					w = q(80, 100); // 8pm  15
 					break;
 				case 7:
-					ppl = getRandomInt(30, 90); // 830pm 5
+					w = q(30, 90); // 830pm 5
 					break;
 				case 8:
-					ppl = getRandomInt(30, 80); // 9pm  5
+					w = q(30, 80); // 9pm  5
 					break;
 				case 9:
-					ppl = 0;
+					w = 0;
 					break;
 			}
-			return Math.floor(((ppl * total_people) / 1000));
+			return Math.floor(((w * p) / 1000));
 		}
-		function getRandomInt(min, max) {
+		function q(n, o) {
 
-			if (dayOfWeek == 1 || dayOfWeek == 3 || dayOfWeek == 5) {
-				return Math.min((Math.floor(Math.random() * (max - min + 1)) + min)*0.9, 140);
+			if (f == 1 || f == 3 || f == 5) {
+				return Math.min((Math.floor(Math.random() * (o - n + 1)) + n)*0.9, 140);
 
 			} else {
-				return Math.min((Math.floor(Math.random() * (max - min + 1)) + min)*1.1,140);
+				return Math.min((Math.floor(Math.random() * (o - n + 1)) + n)*1.1,140);
 			}
 
 		}
@@ -148,74 +148,68 @@
 			window.myLine = new Chart(ctx, config);
 		};
 
-		function addData(time, people) {
-			baseTime = 1730;
-			if (time % 100 == 0){
-				var i = ((time - baseTime - 70) / 50) + 1
+		function addData(c, j) {
+			k = 1730;
+			if (c % 100 == 0){
+				var i = ((c - k - 70) / 50) + 1
 			} else {
-				var i = (time - baseTime) / 50;
+				var i = (c - k) / 50;
 			}
 			if (config.data.datasets.length > 0) {
-				config.data.labels.push(newTime(i * 30));
+				config.data.labels.push(z(i * 30));
 				for (var index = 0; index < config.data.datasets.length; ++index) {
 					if (typeof config.data.datasets[index].data[0] === 'object') {
-						var h = getValueAtTime(time, people);
-						console.log(h);
+						var h = v(c, j);
 						config.data.datasets[index].data.push({
 							y: h
 						});
 					} else {
-						var h = getValueAtTime(time, people);
+						var h = v(c, j);
 						console.log(h);
-						config.data.datasets[index].data.push(getValueAtTime(time, people));
+						config.data.datasets[index].data.push(v(c, j));
 					}
 				}
 				// window.myLine.update();
 			}
 			return h;
 		};
-		var parameters = location.search.substring(1).split("&");
-	    var ppltemp = parameters[0].split("=");
-		var timesplit = (parameters[1].split("="))[1].split(":");
-		var hours = ((parseInt(timesplit[0]) + 12) * 100) + parseInt(timesplit[1]);
-		var daysplit = ((parameters[2].split("="))[1].split(","));
-		var dayOfWeek = parseInt(daysplit[2]);
+		var e = location.search.substring(1).split("&");
+	    var g = e[0].split("=");
+		var i = (e[1].split("="))[1].split(":");
+		var b = ((parseInt(i[0]) + 12) * 100) + parseInt(i[1]);
+		var h = ((e[2].split("="))[1].split(","));
+		var f = parseInt(h[2]);
 
-		console.log("hours = " + hours % 100);
-		if(0 < (hours % 100) && (hours % 100) < 30) {
-			console.log("first");
-			hours -= hours % 100;
-		} else if (30 < (hours % 100) && (hours % 100) < 100){
-			console.log("second");
-			hours += 100 - (hours % 100);
+		if(0 < (b % 100) && (b % 100) < 30) {
+			b -= b % 100;
+		} else if (30 < (b % 100) && (b % 100) < 100){
+			b += 100 - (b % 100);
 		}
 		var count = 1;
-		console.log("hours = " + hours);
-		var time = hours;
-		var total = 0;
-		while(time < 2131){
-			console.log("time=" + time);
-			if(hours < 1901){
-				total += addData(time, parseInt(ppltemp[1]) * 4);
+		var c = b;
+		var a = 0;
+		while(c < 2131){
+			if(b < 1901){
+				a += addData(c, parseInt(g[1]) * 4);
 			} else {
-				total += addData(time, parseInt(ppltemp[1]));
+				a += addData(c, parseInt(g[1]));
 			}
-			if(time % 100 == 0){
-				time += 30;
+			if(c % 100 == 0){
+				c += 30;
 			} else {
-				time += 70;
+				c += 70;
 			}
 			count++;
 		}
 
-		console.log(total);
-		document.getElementById("time").innerHTML = (parseInt(timesplit[0]) + 12) + ":" + timesplit[1];
-		if(hours < 1901){
-			document.getElementById("minNum").innerHTML = Math.round(0.95 * total);
-			document.getElementById("maxNum").innerHTML = Math.round(1.05 * total);
+		console.log(a);
+		document.getElementById("time").innerHTML = (parseInt(i[0]) + 12) + ":" + i[1];
+		if(b < 1901){
+			document.getElementById("minNum").innerHTML = Math.round(0.95 * a);
+			document.getElementById("maxNum").innerHTML = Math.round(1.05 * a);
 		} else {
-			document.getElementById("minNum").innerHTML = Math.round(0.95 * total);
-			document.getElementById("maxNum").innerHTML = Math.round(1.05 * total);
+			document.getElementById("minNum").innerHTML = Math.round(0.95 * a);
+			document.getElementById("maxNum").innerHTML = Math.round(1.05 * a);
 		}
 
 	</script>
